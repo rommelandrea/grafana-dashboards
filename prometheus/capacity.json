@@ -123,7 +123,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "max(sum(kube_pod_container_resource_requests_cpu_cores) by (instance)) / min(sum(kube_node_status_allocatable_cpu_cores) by (instance))",
+          "expr": "max(sum(kube_pod_container_resource_limits{resource=\"cpu\"}) by (instance)) / min(sum(kube_node_status_allocatable{resource=\"cpu\"}) by (instance))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "",
@@ -290,7 +290,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "min(sum(kube_node_status_allocatable_cpu_cores) by (instance))",
+          "expr": "min(sum(kube_node_status_allocatable{resource=\"cpu\"}) by (instance))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -299,7 +299,7 @@
           "step": 20
         },
         {
-          "expr": "max(sum(kube_pod_container_resource_requests_cpu_cores) by (instance))",
+          "expr": "max(sum(kube_pod_container_resource_requests{resource=\"cpu\"}) by (instance))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -515,7 +515,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "max(sum(kube_pod_container_resource_requests_memory_bytes) by (instance)) / min(sum(kube_node_status_allocatable_memory_bytes) by (instance))",
+          "expr": "max(sum(kube_pod_container_resource_requests{resource=\"memory\"}) by (instance)) / min(sum(kube_node_status_allocatable{resource=\"memory\"}) by (instance))",
           "format": "time_series",
           "intervalFactor": 2,
           "metric": "",
@@ -687,7 +687,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "min(sum(kube_node_status_allocatable_memory_bytes) by (instance))",
+          "expr": "min(sum(kube_node_status_allocatable{resource=\"memory\"}) by (instance))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -696,7 +696,7 @@
           "step": 20
         },
         {
-          "expr": "max(sum(kube_pod_container_resource_requests_memory_bytes) by (instance))",
+          "expr": "max(sum(kube_pod_container_resource_requests{resource=\"memory\"}) by (instance))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -705,14 +705,14 @@
           "step": 20
         },
         {
-          "expr": "max(sum(kube_pod_container_resource_limits_memory_bytes) by (instance))",
+          "expr": "max(sum(kube_pod_container_resource_limits{resource=\"memory\"}) by (instance))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Limit",
           "refId": "C"
         },
         {
-          "expr": "sum(node_memory_MemTotal) - sum(node_memory_MemFree) - sum(node_memory_Buffers) - sum(node_memory_Cached)",
+          "expr": "sum(node_memory_MemTotal_bytes) - sum(node_memory_MemFree_bytes) - sum(node_memory_Buffers_bytes) - sum(node_memory_Cached_bytes)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Usage",
